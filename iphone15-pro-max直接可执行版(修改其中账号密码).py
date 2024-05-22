@@ -3,12 +3,13 @@ from datetime import datetime
 from selenium.webdriver.support.select import Select
 import pdb
 import time
+import csv
 
 # iphone15 自动化测试
 print("iphone15-pro-max 自动化测试开始")
 
 # 访问测试的url定义
-url = "https://www.apple.com.cn/shop/buy-iphone/iphone-15-pro"
+url = "https://www.apple.com/jp/shop/buy-iphone/iphone-15-pro"
 
 # 1. 创建浏览器对象  这里的Chrome中的变量是chromedriver的驱动地址
 driver = webdriver.Chrome()
@@ -19,36 +20,42 @@ driver.get(url)
 # 3. 隐式等待 设置 防止预售的网络的阻塞
 driver.implicitly_wait(10)
 
-# 4. 开始选择规格【此处我选择了-15 pro-max】
+# 4.  モデル
+# iPhone 15 Pro Max
 element_sku = driver.find_element_by_xpath(
     '//*[@value="6_7inch"]')
 driver.execute_script("arguments[0].click();", element_sku)
 
-# 4.2 选择颜色【此处我选择了-银色】
+# 4.2  仕上げ
+# 【银色】
 element_color = driver.find_element_by_xpath(
     '//*[@value="whitetitanium"]')
 driver.execute_script("arguments[0].click();", element_color)
 driver.implicitly_wait(10)
 
-# 4.3 选择内存【此处我选择了-256g】
+# 4.3 ストレージ
+# 【256g】
 element_memory = driver.find_element_by_xpath(
-    '//*[@value="512gb"]')
+    '//*[@value="256gb"]')
 driver.execute_script("arguments[0].click();", element_memory)
 driver.implicitly_wait(10)
 
-# 4.4 你是否有智能手机要折抵 【此处我选择了-没有旧机折扣】
+# 4.4 Apple Trade In
+#  【没有旧机折扣】
 element_old = driver.find_element_by_xpath('//*[@id="noTradeIn"]')
 driver.execute_script("arguments[0].click();", element_old)
 driver.implicitly_wait(10)
 
-# 4.5 Applecare 【此处我选择了-有Applecare】
+# 4.5 支払い方法
+# 【一括払い】
 element_care = driver.find_element_by_xpath('//*[@value="fullprice"]')
 driver.execute_script("arguments[0].click();", element_care)
 driver.implicitly_wait(10)
 time.sleep(2)
 
-# 4.5 Applecare 【此处我选择了-无Applecare】
-element_care = driver.find_element_by_id('iphone14promax_ac_iup_noapplecare')
+# 4.5 Applecare 
+# 【保証なし】
+element_care = driver.find_element_by_id('applecareplus_59_noapplecare')
 driver.execute_script("arguments[0].click();", element_care)
 driver.implicitly_wait(10)
 time.sleep(2)
@@ -72,67 +79,58 @@ element_check_out = driver.find_element_by_xpath(
 driver.execute_script("arguments[0].click();", element_check_out)
 driver.implicitly_wait(10)
 
-# 6.1 免责身份确认
-dataHandleByApple = driver.find_element_by_xpath(
-    '//*[@id="signIn.consentOverlay.dataHandleByApple"]')
-driver.execute_script("arguments[0].click();", dataHandleByApple)
-driver.implicitly_wait(10)
-
-dataOutSideMyCountry = driver.find_element_by_xpath(
-    '//*[@id="signIn.consentOverlay.dataOutSideMyCountry"]')
-driver.execute_script("arguments[0].click();", dataOutSideMyCountry)
-driver.implicitly_wait(10)
-
-acceptButton = driver.find_element_by_xpath(
-    '//*[@id="consent-overlay-accept-button"]')
-driver.execute_script("arguments[0].click();", acceptButton)
-driver.implicitly_wait(10)
-
+driver.execute_script("return document.readyState == 'complete'")
+# iframe 
+iframe = driver.find_element_by_id("aid-auth-widget-iFrame")
+driver.switch_to.frame(iframe)
 
 # 7.1 输入用户名
+element_username_check = driver.find_element_by_xpath(
+    '//*[@can-field="accountName"]')
+driver.execute_script("arguments[0].click();", element_username_check)
+driver.implicitly_wait(10)
+
 element_username = driver.find_element_by_id(
-    'signIn.customerLogin.appleId')
-element_username.send_keys('862422627@qq.com')
+    'account_name_text_field')
+element_username.send_keys('2846155779@qq.com')
+driver.implicitly_wait(10)
+
+
+element_login = driver.find_element_by_id(
+    'sign-in')
+element_login.click()
 driver.implicitly_wait(10)
 
 # 7.2 输入密码
+element_password_check = driver.find_element_by_xpath(
+    '//*[@can-field="password"]')
+driver.execute_script("arguments[0].click();", element_password_check)
+driver.implicitly_wait(10)
+
 element_password = driver.find_element_by_id(
-    'signIn.customerLogin.password')
-element_password.send_keys('Hdxjhkhjc2012')
+    'password_text_field')
+element_password.send_keys('Nan960405')
 driver.implicitly_wait(10)
 
 # 7.3 点击登录
 element_login = driver.find_element_by_id(
-    'signin-submit-button')
+    'sign-in')
 element_login.click()
 driver.implicitly_wait(10)
 
-# 8.1 你希望如何收到订单商品  【此处我选择了-我要取货】
+# 8.1 你希望如何收到订单商品  
+# 【取货】
 element_want_order = driver.find_element_by_id(
     'fulfillmentOptionButtonGroup1')
 driver.execute_script("arguments[0].click();", element_want_order)
 time.sleep(2)
 
-# 8.2 点击显示此地附近的零售店
+# 8.2 受け取り場所をさらに表示
 selectdistrict = driver.find_element_by_xpath(
     '//*[@data-autom="fulfillment-pickup-store-search-button"]')
 driver.execute_script("arguments[0].click();", selectdistrict)
 time.sleep(2)
 
-# 8.3 点击山东
-selectprovice =  driver.find_element_by_xpath("//button[contains(text(),'山东')]")
-driver.execute_script("arguments[0].click();", selectprovice)
-time.sleep(2)
-
-# 8.4 点击青岛
-selectprovice =  driver.find_element_by_xpath("//button[contains(text(),'青岛')]")
-driver.execute_script("arguments[0].click();", selectprovice)
-time.sleep(2)
-
-# 8.5 点击市南
-selectprovice =  driver.find_element_by_xpath("//button[contains(text(),'市南区')]")
-driver.execute_script("arguments[0].click();", selectprovice)
-time.sleep(2)
 
 # 因为无货需要判断元素是否可以点击
 isOK = driver.find_element_by_xpath(
@@ -149,19 +147,6 @@ while isOKFlag:
         driver.execute_script("arguments[0].click();", selectdistrict)
         time.sleep(1)
 
-        selectprovice =  driver.find_element_by_xpath("//button[contains(text(),'山东')]")
-        driver.execute_script("arguments[0].click();", selectprovice)
-        time.sleep(1)
-
-        # 8.4 点击青岛
-        selectprovice =  driver.find_element_by_xpath("//button[contains(text(),'青岛')]")
-        driver.execute_script("arguments[0].click();", selectprovice)
-        time.sleep(1)
-
-        # 8.5 点击市南
-        selectprovice =  driver.find_element_by_xpath("//button[contains(text(),'市南区')]")
-        driver.execute_script("arguments[0].click();", selectprovice)
-
         isOK = driver.find_element_by_xpath('//*[@class="rt-storelocator-store-list"]/fieldset/ul/li[1]/input').is_enabled()
         isOKFlag = bool(1 - isOK)
         #print("最后了isOK   " + str(isOKFlag))
@@ -175,18 +160,20 @@ driver.execute_script("arguments[0].click();", element_pickupTab)
 driver.implicitly_wait(20)
 
 # 8.7 继续填写取货详情
-element_checkout = driver.find_element_by_id(
-    'rs-checkout-continue-button-bottom')
-driver.execute_script("arguments[0].click();", element_checkout)
-time.sleep(2)
+#element_checkout = driver.find_element_by_id(
+#    'rs-checkout-continue-button-bottom')
+#driver.execute_script("arguments[0].click();", element_checkout)
+#time.sleep(2)
 
-# 8.8 选择取货时间 【根据时间自己定】
+# 8.8 选择取货时间 
+# 【根据时间自己定】
 element_pickup_time = driver.find_element_by_xpath(
     '//*[@value="18"]')
 driver.execute_script("arguments[0].click();", element_pickup_time)
 time.sleep(2)
 
-# 8.9 选择取货时间段 【此处我选择了-默认第一个时间段】
+# 8.9 选择取货时间段 
+# 【默认第一个时间段】
 element_time_quantum = driver.find_element_by_xpath(
     '//*[@id="checkout.fulfillment.pickupTab.pickup.timeSlot.dateTimeSlots.timeSlotValue"]')
 Select(element_time_quantum).select_by_index(1)
@@ -203,31 +190,25 @@ driver.implicitly_wait(20)
 # 9.1 请填写姓氏
 lastName = driver.find_element_by_id(
     'checkout.pickupContact.selfPickupContact.selfContact.address.lastName')
-lastName.send_keys('王')
+lastName.send_keys('曹')
 driver.implicitly_wait(10)
 
 # 9.2 请填写名字
 firstName = driver.find_element_by_id(
     'checkout.pickupContact.selfPickupContact.selfContact.address.firstName')
-firstName.send_keys('大锤')
+firstName.send_keys('澤軍')
 driver.implicitly_wait(10)
 
 # 9.3 请填写电子邮件
 emailAddress = driver.find_element_by_id(
     'checkout.pickupContact.selfPickupContact.selfContact.address.emailAddress')
-emailAddress.send_keys('862422627@qq.com')
+emailAddress.send_keys('123456@qq.com')
 driver.implicitly_wait(10)
 
 # 9.4 请填写手机号
 emailAddress = driver.find_element_by_id(
     'checkout.pickupContact.selfPickupContact.selfContact.address.fullDaytimePhone')
-emailAddress.send_keys('18306390693')
-driver.implicitly_wait(10)
-
-# 9.5 请填写身份证后四位
-nationalIdSelf = driver.find_element_by_id(
-    'checkout.pickupContact.selfPickupContact.nationalIdSelf.nationalIdSelf')
-nationalIdSelf.send_keys('403X')
+emailAddress.send_keys('080123456789')
 driver.implicitly_wait(10)
 
 # 9.6 继续选择付款方式
@@ -236,10 +217,29 @@ element_checkoutPay = driver.find_element_by_id(
 driver.execute_script("arguments[0].click();", element_checkoutPay)
 driver.implicitly_wait(10)
 
-# 10 立即下单 【此处我选择了-微信支付】
+# 10 ご希望の支払い方法
+# 【此处我选择了-微信支付】
 element_billingOptions = driver.find_element_by_id(
-    'checkout.billing.billingoptions.wechat_label')
+    'checkout.billing.billingoptions.credit')
 driver.execute_script("arguments[0].click();", element_billingOptions)
+driver.implicitly_wait(10)
+
+# 9.1 カード情報を入力
+cardNumber = driver.find_element_by_id(
+    'checkout.billing.billingOptions.selectedBillingOptions.creditCard.cardInputs.cardInput-0.cardNumber')
+cardNumber.send_keys('1234567890')
+driver.implicitly_wait(10)
+
+# 9.2 有効期限
+cardMonth = driver.find_element_by_id(
+    'checkout.billing.billingOptions.selectedBillingOptions.creditCard.cardInputs.cardInput-0.expiration')
+cardMonth.send_keys('01/26')
+driver.implicitly_wait(10)
+
+# 9.2 CVV
+cardCvv = driver.find_element_by_id(
+    'checkout.billing.billingOptions.selectedBillingOptions.creditCard.cardInputs.cardInput-0.securityCode')
+cardCvv.send_keys('999')
 driver.implicitly_wait(10)
 
 # 11.1 确定

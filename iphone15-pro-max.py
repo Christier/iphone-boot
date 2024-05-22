@@ -14,7 +14,7 @@ area = sys.argv[5]
 print("iphone15-pro-max 自动化测试开始")
 
 # 访问测试的url定义
-url = "https://www.apple.com.cn/shop/buy-iphone/iphone-15-pro"
+url = "https://www.apple.com/jp/shop/buy-iphone/iphone-15-pro"
 
 # 1. 创建浏览器对象  这里的Chrome中的变量是chromedriver的驱动地址
 driver = webdriver.Chrome()
@@ -25,7 +25,8 @@ driver.get(url)
 # 3. 隐式等待 设置 防止预售的网络的阻塞
 driver.implicitly_wait(10)
 
-# 4. 开始选择规格【此处我选择了-15 pro-max】
+# 4.  模拟点击 input 元素
+# iPhone 15 Pro Max
 element_sku = driver.find_element_by_xpath(
     '//*[@value="6_7inch"]')
 driver.execute_script("arguments[0].click();", element_sku)

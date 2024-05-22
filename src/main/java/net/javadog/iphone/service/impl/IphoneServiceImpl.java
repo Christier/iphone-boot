@@ -59,7 +59,7 @@ public class IphoneServiceImpl extends ServiceImpl<IphoneMapper, IphoneEntity> i
     /**
      * 监听地址模板
      */
-    private String targetTpl = "https://www.apple.com.cn/shop/fulfillment-messages?pl=true&mts.0=regular&mts.1=compact&parts.0={}&location={}";
+    private String targetTpl = "https://www.apple.com/jp/shop/retail/pickup-message?pl=true&parts.0=${}&store=${}";
 
     /**
      * 型号颜色-对应map
@@ -72,39 +72,39 @@ public class IphoneServiceImpl extends ServiceImpl<IphoneMapper, IphoneEntity> i
     public static final Map<String, String> SIZE= new HashMap<>();
 
     static {
-        COLOR.put("MU2Q3CH/A", "naturaltitanium");
-        COLOR.put("MU2V3CH/A", "naturaltitanium");
-        COLOR.put("MU603CH/A", "naturaltitanium");
+        COLOR.put("MU6R3J/A", "naturaltitanium");
+        COLOR.put("MU6W3J/A", "naturaltitanium");
+        COLOR.put("MU713J/A", "naturaltitanium");
 
-        COLOR.put("MU2R3CH/A", "bluetitanium");
-        COLOR.put("MU2W3CH/A", "bluetitanium");
-        COLOR.put("MU613CH/A", "bluetitanium");
+        COLOR.put("MU6T3J/A", "bluetitanium");
+        COLOR.put("MU6X3J/A", "bluetitanium");
+        COLOR.put("MU723J/A", "bluetitanium");
 
-        COLOR.put("MU2P3CH/A", "whitetitanium");
-        COLOR.put("MU2U3CH/A", "whitetitanium");
-        COLOR.put("MU2Y3CH/A", "whitetitanium");
+        COLOR.put("MU6Q3J/A", "whitetitanium");
+        COLOR.put("MU6V3J/A", "whitetitanium");
+        COLOR.put("MU703J/A", "whitetitanium");
 
-        COLOR.put("MU2N3CH/A", "blacktitanium");
-        COLOR.put("MU2T3CH/A", "blacktitanium");
-        COLOR.put("MU2X3CH/A", "blacktitanium");
+        COLOR.put("MU6P3J/A", "blacktitanium");
+        COLOR.put("MU6U3J/A", "blacktitanium");
+        COLOR.put("MU6Y3J/A", "blacktitanium");
     }
 
     static {
-        SIZE.put("MU2Q3CH/A", "256gb");
-        SIZE.put("MU2V3CH/A", "512gb");
-        SIZE.put("MU603CH/A", "1tb");
+        SIZE.put("MU6R3J/A", "256gb");
+        SIZE.put("MU6W3J/A", "512gb");
+        SIZE.put("MU713J/A", "1tb");
 
-        SIZE.put("MU2R3CH/A", "256gb");
-        SIZE.put("MU2W3CH/A", "512gb");
-        SIZE.put("MU613CH/A", "1tb");
+        SIZE.put("MU6T3J/A", "256gb");
+        SIZE.put("MU6X3J/A", "512gb");
+        SIZE.put("MU723J/A", "1tb");
 
-        SIZE.put("MU2P3CH/A", "256gb");
-        SIZE.put("MU2U3CH/A", "512gb");
-        SIZE.put("MU2Y3CH/A", "1tb");
+        SIZE.put("MU6Q3J/A", "256gb");
+        SIZE.put("MU6V3J/A", "512gb");
+        SIZE.put("MU703J/A", "1tb");
 
-        SIZE.put("MU2N3CH/A", "256gb");
-        SIZE.put("MU2T3CH/A", "512gb");
-        SIZE.put("MU2X3CH/A", "1tb");
+        SIZE.put("MU6P3J/A", "256gb");
+        SIZE.put("MU6U3J/A", "512gb");
+        SIZE.put("MU6Y3J/A", "1tb");
     }
 
 
@@ -209,7 +209,7 @@ public class IphoneServiceImpl extends ServiceImpl<IphoneMapper, IphoneEntity> i
         String area = region[2];
 
         //前面一半是本地环境下的python的启动文件地址，后面一半是要执行的python脚本地址
-        String[] arguments = new String[]{"python", "E:\\workgit\\javadog\\apple\\iphone15-pro-max.py", color, size, province, city, area};
+        String[] arguments = new String[]{"python", "E:\\workspace\\pros\\iphone-boot.git\\iphone15-pro-max.py", color, size, province, city, area};
         Process proc;
         try {
             proc = Runtime.getRuntime().exec(arguments);// 执行py文件

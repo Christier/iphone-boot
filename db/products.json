@@ -1,0 +1,86 @@
+{
+  "iPhone15ProMax_256GB_NaturalTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ナチュラルチタニウム",
+    "storage": "256GB",
+    "pattern": "MU6R3J/A",
+    "price": "189800"
+  },
+  "iPhone15ProMax_256GB_BlueTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ブルーチタニウム",
+    "storage": "256GB",
+    "pattern": "MU6T3J/A",
+    "price": "189800"
+  },
+  "iPhone15ProMax_256GB_WhiteTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ホワイトチタニウム",
+    "storage": "256GB",
+    "pattern": "MU6Q3J/A",
+    "price": "189800"
+  },
+  "iPhone15ProMax_256GB_BlackTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ブラックチタニウム",
+    "storage": "256GB",
+    "pattern": "MU6P3J/A",
+    "price": "189800"
+  },
+  "iPhone15ProMax_512GB_NaturalTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ナチュラルチタニウム",
+    "storage": "512GB",
+    "pattern": "MU6W3J/A",
+    "price": "219800"
+  },
+  "iPhone15ProMax_512GB_BlueTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ブルーチタニウム",
+    "storage": "512GB",
+    "pattern": "MU6X3J/A",
+    "price": "219800"
+  },
+  "iPhone15ProMax_512GB_WhiteTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ホワイトチタニウム",
+    "storage": "512GB",
+    "pattern": "MU6V3J/A",
+    "price": "219800"
+  },
+  "iPhone15ProMax_512GB_BlackTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ブラックチタニウム",
+    "storage": "512GB",
+    "pattern": "MU6U3J/A",
+    "price": "219800"
+  },
+  "iPhone15ProMax_1TB_NaturalTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ナチュラルチタニウム",
+    "storage": "1TB",
+    "pattern": "MU713J/A",
+    "price": "249800"
+  },
+  "iPhone15ProMax_1TB_BlueTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ブルーチタニウム",
+    "storage": "1TB",
+    "pattern": "MU723J/A",
+    "price": "249800"
+  },
+  "iPhone15ProMax_1TB_WhiteTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ホワイトチタニウム",
+    "storage": "1TB",
+    "pattern": "MU703J/A",
+    "price": "249800"
+  },
+  "iPhone15ProMax_1TB_BlackTitanium": {
+    "name": "iPhone 15 Pro Max",
+    "color": "ブラックチタニウム",
+    "storage": "1TB",
+    "pattern": "MU6Y3J/A",
+    "price": "249800"
+  }
+}
